@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+sudo mount -t cifs -o user=answeror,iocharset=utf8,noperm //fat.zju-capg.org/home/deepsemg-cache .cache

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+ver=706
+for i in 0 1 2 3 4; do
+  scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-revgrad-$i-v$ver --fold $i --batch-size 1000 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 1 --lambda-scale 0.5 --num-subject-block 2 --confuse-all --gamma 1e8 --revgrad-num-batch 3 --num-epoch 120 --lr-step 40
+done

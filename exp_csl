@@ -1,0 +1,36 @@
+for i in $(seq 0 9); do
+  python -m sigr.train_high_density_emg exp --log log --snapshot model \
+    --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    --root .cache/CSL-piece_multistream-universal-intra-session-LR28-16-24-$i \
+    --batch-size 1000 --decay-all --adabn --dataset csliter \
+    --preprocess '(csl-cut,abs,ninapro-lowpass,downsample-5)' \
+    --balance-gesture 1 \
+    --num-filter 64 \
+    --num-semg-row 24 --num-semg-col 7 \
+    --feature-name 'piece_multistream' \
+    --fusion-type 'fuse_5' \
+    --window 1 \
+    --num-pixel 2 \
+    --dropout 0.5 \
+    --no-zscore \
+    crossval --crossval-type universal-intra-session --fold $i
+done
+
+for i in $(seq 0 249); do
+   python -m sigr.train_high_density_emg exp --log log --snapshot model \
+    --num-epoch 10 --lr-step 4 --lr-step 8 --snapshot-period 10 \
+    --root .cache/CSL-piece_multistream-1-1-one-fold-intra-session-$i \
+    --params .cache/CSL-piece_multistream-universal-intra-session-LR28-16-24-$(($i % 10))/model-0028.params \
+    --batch-size 1000 --decay-all --adabn --num-adabn-epoch 10 --dataset csliter \
+    --preprocess '(csl-cut,abs,ninapro-lowpass)' \
+    --balance-gesture 1 \
+    --num-filter 64 \
+    --num-semg-row 24 --num-semg-col 7 \
+    --feature-name 'piece_multistream' \
+    --fusion-type 'fuse_5' \
+    --window 1 \
+    --num-pixel 2 \
+    --dropout 0.5  \
+    --no-zscore \
+    crossval --crossval-type intra-session --fold $i 
+done  

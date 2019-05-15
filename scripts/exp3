@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+ver=509
+for i in $(seq 0 9); do
+  scripts/sigr python -m sigr.app inter --gpu 0 --gpu 1 --log log --snapshot model --root .cache/sigr-inter-tzeng-$i-v$ver --fold $i --batch-size 1800 --num-pixel 2 --num-filter 16 --tzeng --subject-loss-weight 1 --subject-confusion-loss-weight 0.1 --lambda-scale 1 --num-subject-block 0 --minibatch
+done

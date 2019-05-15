@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+# ver=405
+# for i in $(seq 8 8); do
+  # scripts/sigr python -m sigr.app inter --gpu 0 --gpu 1 --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --revgrad --params .cache/sigr-inter-adabn-$i-v403/model-0060.params --gamma 1e8 --lr 0.01 --batch-size 2000 --num-filter 16 --lambda-scale 0.1
+# done
+# ver=512
+# for i in $(seq 0 0); do
+  # scripts/sigr python -m sigr.app inter --gpu 0 --gpu 1 --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 0.1 --lambda-scale 1 --num-subject-block 0 --minibatch  --params .cache/sigr-inter-adabn-$i-v506/model-0060.params --lr 0.01 --num-epoch 15 --lr-step 5 --confuse-all
+# done
+# ver=608
+# for i in $(seq 3 9); do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 0.1 --lambda-scale 10 --num-subject-block 0 --minibatch --params .cache/sigr-inter-adabn-$i-v506/model-0060.params --lr 0.01 --num-epoch 15 --lr-step 5 --confuse-all --gamma 1e8 --revgrad-num-batch 2
+# done
+# ver=610
+# for i in $(seq 3 3); do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 0.01 --lambda-scale 10 --num-subject-block 0 --minibatch --confuse-all --gamma 1e8 --revgrad-num-batch 3
+# done
+# ver=701
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 1 --lambda-scale 0.1 --num-subject-block 2 --minibatch --params .cache/sigr-inter-adabn-$i-v506/model-0060.params --lr 0.01 --num-epoch 15 --lr-step 5 --confuse-all --gamma 1e8 --revgrad-num-batch 2
+# done
+# ver=702
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 1 --lambda-scale 0.1 --num-subject-block 2 --minibatch --confuse-all --gamma 1e8 --revgrad-num-batch 3
+# done
+#ver=617
+#for i in $(seq 0 9); do
+#  scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 0.1 --lambda-scale 1 --num-subject-block 0 --minibatch --params .cache/sigr-inter-adabn-$i-v506/model-0060.params --lr 0.01 --num-epoch 15 --lr-step 5 --confuse-all --gamma 1e8 --revgrad-num-batch 10
+#done
+#ver=618
+#for i in $(seq 0 9); do
+#  scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 0.1 --lambda-scale 1 --num-subject-block 0 --minibatch --params .cache/sigr-inter-adabn-$i-v506/model-0060.params --lr 0.01 --num-epoch 15 --lr-step 5 --confuse-all --gamma 1e8 --revgrad-num-batch 1
+#done
+#ver=619
+#for i in $(seq 0 9); do
+#  scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 0.1 --lambda-scale 1 --num-subject-block 0 --minibatch --params .cache/sigr-inter-adabn-$i-v506/model-0060.params --lr 0.1 --num-epoch 15 --lr-step 5 --confuse-all --gamma 1e8 --revgrad-num-batch 100
+#done
+# ver=705
+# for i in 7 8 4 5; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 1 --lambda-scale 0.5 --num-subject-block 2 --minibatch --confuse-all --gamma 1e8 --revgrad-num-batch 3 --num-epoch 120 --lr-step 40
+# done
+# ver=710
+# for i in 3 2 1 4 0; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 1 --lambda-scale 0.1 --num-subject-block 2 --minibatch --confuse-all --gamma 1e8 --revgrad-num-batch 2
+# done
+# ver=713
+# for i in 3 2 1 4 0; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 1 --lambda-scale 0.5 --num-subject-block 2 --minibatch --confuse-all --gamma 1e8 --revgrad-num-batch 2 --params .cache/sigr-inter-adabn-$i-v506/model-0060.params
+# done
+# ver=723
+# for i in 3 2 1 4 0; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 0.1 --lambda-scale 1 --num-subject-block 0 --minibatch --confuse-all --gamma 1e8 --revgrad-num-batch 4 --params .cache/sigr-inter-adabn-$i-v506/model-0060.params
+# done
+# ver=738
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --batch-size 900 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 0.1 --lambda-scale 1 --num-subject-block 2 --minibatch --confuse-all --gamma 1e8 --revgrad-num-batch 2 --drop-branch
+# done
+ver=815
+for i in 5 6 7 8 9; do
+  scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-revgrad-$i-v$ver --fold $i --adabn --batch-size 900 --num-pixel 2 --num-filter 16 --revgrad --subject-loss-weight 1 --lambda-scale 0.01 --num-subject-block 0 --minibatch --gamma 1e8 --revgrad-num-batch 2
+done

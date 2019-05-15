@@ -1,0 +1,149 @@
+#!/usr/bin/env bash
+
+# ver=843
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-$i-v$ver --fold $i --batch-size 900 --num-pixel 2 --num-filter 16 --adabn --minibatch
+# done
+
+# ver=847
+# for i in $@; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-w150-lstm-adabn-$i-v$ver --fold $i --batch-size 900 --num-pixel 2 --num-filter 16 --adabn --minibatch --window 150 --adabn-num-epoch 1 --num-epoch 30 --lr-step 10 --lr-step 20 --lstm
+# done
+# ver=869
+# for i in $@; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-w150-lstm-adabn-$i-v$ver --fold $i --batch-size 180 --num-pixel 2 --num-filter 16 --adabn --minibatch --window 150 --adabn-num-epoch 10 --num-epoch 10 --lr-step 4 --lr-step 8 --lstm --lstm-last --lstm-dropout 0.5 --params .cache/sigr-inter-adabn-$i-v843/model-0060.params --ignore-params 'gesture_last_fc_.*'
+# done
+# ver=927
+# for i in $@; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-w150-lstm-adabn-$i-v$ver --fold $i --batch-size 900 --num-pixel 2 --num-filter 16 --adabn --window 150 --lstm-window 15 --num-adabn-epoch 1 --lstm --minibatch --num-lstm-hidden 16 --lstm-last 1 --lstm-dropout 0.5
+# done
+# ver=927
+# for i in $@; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-calib-w150-lstm-adabn-$i-v$ver --fold $i --batch-size 1000 --num-pixel 2 --num-filter 16 --window 150 --lstm-window 15 --num-adabn-epoch 1 --lstm --num-lstm-hidden 16 --lstm-last 1 --lstm-dropout 0.5 --only-calib --params .cache/sigr-inter-w150-lstm-adabn-$i-v927/model-0060.params --adabn
+# done
+# ver=927
+# for i in $@; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-calib-w150-aug-lstm-adabn-$i-v$ver --fold $i --batch-size 1000 --num-pixel 2 --num-filter 16 --window 150 --lstm-window 15 --num-adabn-epoch 1 --lstm --num-lstm-hidden 16 --lstm-last 1 --lstm-dropout 0.5 --only-calib --params .cache/sigr-inter-w150-lstm-adabn-$i-v927/model-0060.params --adabn --random-bad-channel -1 --random-bad-channel 0 --random-bad-channel 1 --random-scale 1
+# done
+# ver=932
+# for i in $@; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-calib-w150-lstm-adabn-$i-v$ver --fold $i --batch-size 1000 --num-pixel 2 --num-filter 16 --window 150 --lstm-window 15 --num-adabn-epoch 1 --lstm --num-lstm-hidden 16 --lstm-last 1 --lstm-dropout 0.5 --only-calib --params .cache/sigr-inter-w150-lstm-adabn-$i-v927/model-0060.params --adabn --lr 0.001
+# done
+# ver=933
+# for i in $@; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-calib-w150-faug-lstm-adabn-$i-v$ver --fold $i --batch-size 1000 --num-pixel 2 --num-filter 16 --window 150 --lstm-window 15 --num-adabn-epoch 1 --lstm --num-lstm-hidden 16 --lstm-last 1 --lstm-dropout 0.5 --only-calib --params .cache/sigr-inter-w150-lstm-adabn-$i-v927/model-0060.params --adabn --lr 0.001 --faug 0.5
+# done
+# ver=955.73
+# for i in $@; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-$i-v$ver --fold $i --batch-size 900 --adabn --minibatch --pixel-reduce-smooth --pixel-reduce-loss-weight 0
+# done
+
+# ver=957.40.2
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    # --root .cache/sigr-dbb-inter-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --batch-size 1800 --decay-all --adabn --minibatch --dataset dbb \
+    # --preprocess '(median)' \
+    # crossval --crossval-type inter-subject --fold $i
+# done
+# ver=957.40
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    # --root .cache/sigr-dbb-inter-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --batch-size 1800 --decay-all --adabn --minibatch --dataset dbb \
+    # crossval --crossval-type inter-subject --fold $i
+# done
+# ver=957.41
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    # --root .cache/sigr-dbb-universal-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --batch-size 2000 --decay-all --adabn --minibatch --dataset dbb \
+    # crossval --crossval-type universal-intra-subject --fold $i
+# done
+# ver=957.42
+# for i in $@; do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    # --root .cache/sigr-dbb-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --batch-size 1000 --decay-all --dataset dbb \
+    # --params .cache/sigr-dbb-universal-intra-subject-$(($i % 10))-v957.41/model-0028.params \
+    # crossval --crossval-type intra-subject --fold $i
+# done
+# ver=957.42.1
+# for i in $(seq 0 99); do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    # --root .cache/sigr-dbb-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --batch-size 1000 --decay-all --adabn --num-adabn-epoch 10 --dataset dbb \
+    # --params .cache/sigr-dbb-universal-intra-subject-$(($i % 10))-v957.41/model-0028.params \
+    # crossval --crossval-type intra-subject --fold $i
+# done
+# ver=957.42.2
+# for i in $@; do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    # --root .cache/sigr-dbb-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --batch-size 200 --decay-all --adabn --num-adabn-epoch 10 --dataset dbb \
+    # --params .cache/sigr-dbb-universal-intra-subject-$(($i % 10))-v957.41/model-0028.params \
+    # crossval --crossval-type intra-subject --fold $i
+# done
+# ver=957.42.3
+# for i in $@; do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    # --root .cache/sigr-dbb-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --batch-size 1000 --decay-all --adabn --num-adabn-epoch 10 --dataset dbb \
+    # --num-filter 64 \
+    # crossval --crossval-type intra-subject --fold $i
+# done
+# ver=957.42.4
+# for i in $@; do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    # --root .cache/sigr-dbb-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --batch-size 1000 --decay-all --adabn --num-adabn-epoch 10 --dataset dbb \
+    # crossval --crossval-type intra-subject --fold $i
+# done
+# ver=957.42.5
+# for i in $@; do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    # --root .cache/sigr-dbb-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --batch-size 1000 --decay-all --adabn --num-adabn-epoch 10 --dataset dbb \
+    # --preprocess '(median)' \
+    # crossval --crossval-type intra-subject --fold $i
+# done
+# ver=957.43
+# for i in $@; do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    # --root .cache/sigr-dba-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --batch-size 1000 --decay-all --adabn --num-adabn-epoch 10 --dataset dba \
+    # crossval --crossval-type intra-subject --fold $i
+# done
+
+# ver=957.51
+# for i in $@; do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 14 --lr-step 8 --lr-step 12 --snapshot-period 14 \
+    # --root .cache/sigr-csl-intra-session-$i-v$ver \
+    # --num-semg-row 24 --num-semg-col 7 \
+    # --batch-size 1000 --decay-all --adabn --num-adabn-epoch 10 --dataset csl \
+    # --preprocess '(csl-bandpass,csl-cut,median)' \
+    # --balance-gesture 1 \
+    # --params .cache/sigr-csl-universal-intra-session-$(($i % 10))-v957.50/model-0028.params \
+    # crossval --crossval-type intra-session --fold $i
+# done

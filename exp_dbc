@@ -1,0 +1,97 @@
+# #dba
+# python -m sigr.train_high_density_emg exp --log log --snapshot model \
+#    --root .cache/capgmyo-piece_multistream-1-1-universal-one-fold-intra-subject \
+#    --batch-size 1000 --decay-all --dataset capgmyoiter \
+#    --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+#    --num-filter 64 \
+#    --feature-name 'piece_multistream_v2' \
+#    --fusion-type 'fuse_5' \
+#    --num-pixel 2 \
+#    --window 1 \
+#    --num-semg-row 16 --num-semg-col 8 \
+#    --no-zscore \
+#    --gpu 1 \
+#    crossval --crossval-type universal-one-fold-intra-subject --fold 0
+
+# for i in $(seq 0 17 | shuf); do
+#    python -m sigr.train_high_density_emg exp --log log --snapshot model \
+#    --root .cache/capgmyo-piece_multistream-1-1-one-fold-intra-subject-fold-$i \
+#    --params .cache/capgmyo-piece_multistream-1-1-universal-one-fold-intra-subject/model-0028.params \
+#    --batch-size 1000 --decay-all --dataset capgmyoiter \
+#    --num-filter 64 \
+#    --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+#    --feature-name 'piece_multistream_v2' \
+#    --fusion-type 'fuse_5' \
+#    --num-pixel 2 \
+#    --window 1 \
+#    --num-semg-row 16 --num-semg-col 8 \
+#    --no-zscore \
+#    --gpu 1 \
+#    crossval --crossval-type one-fold-intra-subject --fold $i    
+# done     
+
+##dbb
+# python -m sigr.train_high_density_emg exp --log log --snapshot model \
+#    --root .cache/capgmyo-dbb-piece_multistream-1-1-universal-one-fold-intra-subject \
+#    --batch-size 1000 --decay-all --dataset capgmyoiter_dbb \
+#    --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+#    --num-filter 64 \
+#    --feature-name 'piece_multistream_v2' \
+#    --fusion-type 'fuse_5' \
+#    --num-pixel 2 \
+#    --window 1 \
+#    --num-semg-row 16 --num-semg-col 8 \
+#    --no-zscore \
+#    --gpu 1 \
+#    crossval --crossval-type universal-one-fold-intra-subject --fold 0
+
+# for i in $(seq 0 9 | shuf); do
+#    python -m sigr.train_high_density_emg exp --log log --snapshot model \
+#    --root .cache/capgmyo-dbb-piece_multistream-1-1-one-fold-intra-subject-fold-$i \
+#    --params .cache/capgmyo-dbb-piece_multistream-1-1-universal-one-fold-intra-subject/model-0028.params \
+#    --batch-size 1000 --decay-all --dataset capgmyoiter_dbb \
+#    --num-filter 64 \
+#    --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+#    --feature-name 'piece_multistream_v2' \
+#    --fusion-type 'fuse_5' \
+#    --num-pixel 2 \
+#    --window 1 \
+#    --num-semg-row 16 --num-semg-col 8 \
+#    --no-zscore \
+#    --gpu 1 \
+#    crossval --crossval-type one-fold-intra-subject --fold $i    
+# done     
+
+  
+
+
+python -m sigr.train_high_density_emg exp --log log --snapshot model \
+   --root .cache/capgmyo-dbc-piece_multistream-1-1-universal-one-fold-intra-subject \
+   --batch-size 1000 --decay-all --dataset capgmyoiter_dbc \
+   --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+   --num-filter 64 \
+   --feature-name 'piece_multistream_v2' \
+   --fusion-type 'fuse_5' \
+   --num-pixel 2 \
+   --window 1 \
+   --num-semg-row 16 --num-semg-col 8 \
+   --no-zscore \
+   --gpu 1 \
+   crossval --crossval-type universal-one-fold-intra-subject --fold 0
+
+for i in $(seq 0 9 | shuf); do
+   python -m sigr.train_high_density_emg exp --log log --snapshot model \
+   --root .cache/capgmyo-dbc-piece_multistream-1-1-one-fold-intra-subject-fold-$i \
+   --params .cache/capgmyo-dbc-piece_multistream-1-1-universal-one-fold-intra-subject/model-0028.params \
+   --batch-size 1000 --decay-all --dataset capgmyoiter_dbc \
+   --num-filter 64 \
+   --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+   --feature-name 'piece_multistream_v2' \
+   --fusion-type 'fuse_5' \
+   --num-pixel 2 \
+   --window 1 \
+   --num-semg-row 16 --num-semg-col 8 \
+   --no-zscore \
+   --gpu 1 \
+   crossval --crossval-type one-fold-intra-subject --fold $i    
+done     

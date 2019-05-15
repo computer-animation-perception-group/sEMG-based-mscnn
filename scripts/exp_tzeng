@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# ver=432
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app inter --gpu 0 --gpu 1 --log log --snapshot model --root .cache/sigr-inter-adabn-tzeng-$i-v$ver --fold $i --adabn --lr 0.1 --batch-size 2000 --subject-loss-weight 1 --subject-confusion-loss-weight 0.1 --num-filter 16 --tzeng --num-epoch 60 --lr-step 20 --lambda-scale 1 --tzeng-num-batch 10
+# done
+# ver=511
+# for i in $(seq 7 9); do
+  # scripts/sigr python -m sigr.app inter --gpu 0 --gpu 1 --log log --snapshot model --root .cache/sigr-inter-adabn-tzeng-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --tzeng --subject-loss-weight 1 --subject-confusion-loss-weight 0.1 --lambda-scale 1 --num-subject-block 0 --minibatch  --params .cache/sigr-inter-adabn-$i-v506/model-0060.params --lr 0.01 --num-epoch 15 --lr-step 5 --confuse-conv
+# done
+# ver=512
+# for i in 2 3 4; do
+  # scripts/sigr python -m sigr.app inter --gpu 0 --gpu 1 --log log --snapshot model --root .cache/sigr-inter-adabn-tzeng-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --tzeng --subject-loss-weight 0.1 --subject-confusion-loss-weight 0.1 --lambda-scale 1 --num-subject-block 0 --minibatch  --params .cache/sigr-inter-adabn-$i-v506/model-0060.params --lr 0.01 --num-epoch 15 --lr-step 5 --confuse-all
+# done
+# ver=600
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-tzeng-$i-v$ver --fold $i --adabn --batch-size 1800 --num-pixel 2 --num-filter 16 --tzeng --subject-loss-weight 0.1 --subject-confusion-loss-weight 1 --lambda-scale 1 --num-subject-block 0 --minibatch  --params .cache/sigr-inter-adabn-$i-v506/model-0060.params --lr 0.01 --num-epoch 15 --lr-step 5 --confuse-conv
+# done
+# ver=606
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-tzeng-$i-v$ver --fold $i --batch-size 1000 --num-pixel 2 --num-filter 16 --tzeng --subject-loss-weight 0.1 --subject-confusion-loss-weight 1 --lambda-scale 1 --num-subject-block 0 --params .cache/sigr-inter-$i-v411/model-0060.params --lr 0.01 --num-epoch 15 --lr-step 5
+# done
+# ver=607
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-tzeng-$i-v$ver --fold $i --batch-size 1000 --num-pixel 2 --num-filter 16 --tzeng --subject-loss-weight 0.1 --subject-confusion-loss-weight 1 --lambda-scale 1 --num-subject-block 0
+# done
+ver=750
+for i in 6 5 7 8 9; do
+  scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-tzeng-$i-v$ver --fold $i --adabn --batch-size 900 --num-pixel 2 --num-filter 16 --tzeng --subject-loss-weight 1 --subject-confusion-loss-weight 0.01 --lambda-scale 1 --num-subject-block 0 --minibatch --tzeng-num-batch 10 --lr-step 40 --lr-step 60 --lr-step 80
+done

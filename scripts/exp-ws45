@@ -1,0 +1,229 @@
+#!/usr/bin/env bash
+
+# ver=843
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-w150-adabn-$i-v$ver --fold $i --batch-size 900 --num-pixel 2 --num-filter 16 --adabn --minibatch --window 150
+# done
+# ver=871
+# for i in $@; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-w150-lstm-adabn-$i-v$ver --fold $i --batch-size 180 --num-pixel 2 --num-filter 16 --adabn --minibatch --window 150 --adabn-num-epoch 10 --num-epoch 10 --lr-step 4 --lr-step 8 --lstm --lr 0.01 --params .cache/sigr-inter-adabn-$i-v843/model-0060.params --dropout 0.1 --ignore-params 'gesture_last_fc_.*'
+# done
+# ver=926
+# for i in $@; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-w150-lstm-adabn-$i-v$ver --fold $i --batch-size 900 --num-pixel 2 --num-filter 16 --adabn --window 150 --lstm-window 5 --num-adabn-epoch 1 --lstm --minibatch --num-lstm-hidden 16 --lstm-dropout 0.5
+# done
+# ver=936
+# for i in $@; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-calib-w150-faug-lstm-adabn-$i-v$ver --fold $i --batch-size 1000 --num-pixel 2 --num-filter 16 --window 150 --lstm-window 15 --num-adabn-epoch 1 --lstm --num-lstm-hidden 16 --lstm-last 1 --lstm-dropout 0.5 --only-calib --params .cache/sigr-inter-w150-lstm-adabn-$i-v927/model-0060.params --adabn --lr 0.001 --faug 1
+# done
+# ver=955.72
+# for i in $@; do
+  # scripts/sigr python -m sigr.app inter --log log --snapshot model --root .cache/sigr-inter-adabn-$i-v$ver --fold $i --batch-size 900 --adabn --minibatch --pixel-reduce-smooth --pixel-reduce-loss-weight 9
+# done
+
+# ver=957.39
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    # --root .cache/sigr-dbc-inter-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --batch-size 1800 --decay-all --adabn --minibatch --dataset dbc \
+    # crossval --crossval-type inter-subject --fold $i
+# done
+# ver=957.39.1
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    # --root .cache/sigr-dbc-inter-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --batch-size 1800 --decay-all --adabn --minibatch --dataset dbc \
+    # --preprocess '(median)' \
+    # crossval --crossval-type inter-subject --fold $i
+# done
+# ver=957.44
+# for i in $(seq 0 9); do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    # --root .cache/sigr-dbc-universal-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --batch-size 2000 --decay-all --adabn --minibatch --dataset dbc \
+    # crossval --crossval-type universal-intra-subject --fold $i
+# done
+# ver=957.45
+# for i in $(seq 0 99); do
+  # scripts/sigr python -m sigr.app exp --log log --snapshot model \
+    # --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+    # --root .cache/sigr-dbc-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --batch-size 1000 --decay-all --adabn --num-adabn-epoch 10 --dataset dbc \
+    # --params .cache/sigr-dbc-universal-intra-subject-$(($i % 10))-v957.44/model-0028.params \
+    # crossval --crossval-type intra-subject --fold $i
+# done
+
+# ver=958.25.1
+# for i in $(seq 0 26 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-ninapro-db1-g12-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 1 --num-semg-col 10 \
+    # --dataset ninapro-db1/g12 \
+    # --balance-gesture 1 \
+    # --module knn \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done
+# ver=958.25.2
+# for i in $(seq 0 26 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-ninapro-db1-g12-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 1 --num-semg-col 10 \
+    # --dataset ninapro-db1/g12 \
+    # --balance-gesture 1 \
+    # --module svm \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done
+# ver=958.25.3
+# for i in $(seq 0 26 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-ninapro-db1-g12-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 1 --num-semg-col 10 \
+    # --dataset ninapro-db1/g12 \
+    # --balance-gesture 1 \
+    # --module random-forests \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done
+# ver=958.25.4
+# for i in $(seq 0 26 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-ninapro-db1-g12-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 1 --num-semg-col 10 \
+    # --dataset ninapro-db1/g12 \
+    # --balance-gesture 1 \
+    # --module lda \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done
+
+# ver=958.28.1
+# for i in $(seq 0 9 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-dbc-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --dataset dbc \
+    # --module knn \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done
+# ver=958.28.2
+# for i in $(seq 0 9 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-dbc-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --dataset dbc \
+    # --module svm \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done
+# ver=958.28.3
+# for i in $(seq 0 9 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-dbc-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --dataset dbc \
+    # --module random-forests \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done
+# ver=958.28.4
+# for i in $(seq 0 9 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-dbc-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --dataset dbc \
+    # --module lda \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done
+
+ver=958.26.1
+for i in 4; do
+  nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  python -m sigr.app exp --log log --snapshot model \
+    --root .cache/sigr-dba-one-fold-intra-subject-$i-v$ver \
+    --num-semg-row 16 --num-semg-col 8 \
+    --dataset dba \
+    --module knn \
+    crossval --crossval-type one-fold-intra-subject --fold $i
+done
+# ver=958.26.2
+# for i in $(seq 0 9 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-dba-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --dataset dba \
+    # --module svm \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done
+# ver=958.26.3
+# for i in $(seq 0 9 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-dba-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --dataset dba \
+    # --module random-forests \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done
+# ver=958.26.4
+# for i in $(seq 0 9 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-dba-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --dataset dba \
+    # --module lda \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done
+
+# ver=958.27.1
+# for i in $(seq 0 9 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-dbb-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --dataset dbb \
+    # --module knn \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done
+# ver=958.27.2
+# for i in $(seq 0 9 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-dbb-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --dataset dbb \
+    # --module svm \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done
+# ver=958.27.3
+# for i in $(seq 0 9 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-dbb-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --dataset dbb \
+    # --module random-forests \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done
+# ver=958.27.4
+# for i in $(seq 0 9 | shuf); do
+  # nvidia-docker run -ti -v $(pwd):/code answeror/sigr:2016-08-26 \
+  # python -m sigr.app exp --log log --snapshot model \
+    # --root .cache/sigr-dbb-one-fold-intra-subject-$i-v$ver \
+    # --num-semg-row 16 --num-semg-col 8 \
+    # --dataset dbb \
+    # --module lda \
+    # crossval --crossval-type one-fold-intra-subject --fold $i
+# done

@@ -1,0 +1,39 @@
+ver=1.0.0.0
+python -m sigr.train_sigimg_actimg_fast exp --log log --snapshot model \
+  --root .cache/ninapro-db1-ch_multistream-20-1-universal-one-fold-intra-subject \
+  --batch-size 1000 --decay-all --dataset ninapro-db1-sigimg-fast \
+  --num-filter 64 \
+  --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+  --balance-gesture 1 \
+  --feature-name 'ch_multistream' \
+  --window 20 \
+  --num-pixel 2 \
+  --fusion-type 'fuse_5' \
+  --num-semg-row 1 --num-semg-col 10 \
+  --preprocess 'ninapro-lowpass' \
+  --no-zscore \
+  --gpu 0 \
+  crossval --crossval-type universal-one-fold-intra-subject --fold 0 
+
+
+ver=1.0.0.1
+for i in $(seq 0 26); do
+   python -m sigr.train_sigimg_actimg_fast exp --log log --snapshot model \
+   --root .cache/ninapro-db1-ch_multistream-20-1-one-fold-intra-subject-fold-$i-v$ver \
+   --batch-size 1000 --decay-all --dataset ninapro-db1-sigimg-fast \
+   --params .cache/ninapro-db1-ch_multistream-20-1-universal-one-fold-intra-subject/model-0028.params \
+   --num-filter 64 \
+   --num-epoch 28 --lr-step 16 --lr-step 24 --snapshot-period 28 \
+   --balance-gesture 1 \
+   --feature-name 'ch_multistream' \
+   --window 20 \
+   --num-pixel 2 \
+   --fusion-type 'fuse_5' \
+   --num-semg-row 1 --num-semg-col 10 \
+   --preprocess 'ninapro-lowpass' \
+   --no-zscore \
+   --gpu 0 \
+   crossval --crossval-type one-fold-intra-subject --fold $i 
+done     
+
+
